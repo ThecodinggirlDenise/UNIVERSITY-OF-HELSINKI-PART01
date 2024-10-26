@@ -1,5 +1,21 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
+// eslint-disable-next-line no-unused-vars
+const Button=({onClick,Text})=>{
+  return<Button onClick={onClick}>{Text}</Button>
+}
+const StatisticsLine = ({ text, value }) => {
+  return (
+    <p>
+      {text} {value}
+    </p>
+  );
+};
+
+
+
+
 
 const Statistics = ({ good, neutral, bad, total, average, positivePercentage }) => {
 if (total==0){
@@ -8,12 +24,12 @@ if (total==0){
   
   return (
     <div>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {total}</p>
-      <p>average {average}</p>
-      <p>positive {positivePercentage} %</p>
+      <StatisticsLine text="good" value={good}/>
+      <StatisticsLine text="neutral" value={neutral}/>
+      <StatisticsLine text="bad" value={bad} />
+      <StatisticsLine text="all" value={total} />
+      <StatisticsLine text="average" value={average} />
+      <StatisticsLine text="positive" value={`${positivePercentage} %`} />
     </div>
   );
 };
