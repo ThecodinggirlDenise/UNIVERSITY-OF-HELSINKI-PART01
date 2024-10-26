@@ -1,34 +1,50 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 
-const App = () => {
-  // Save clicks of each button to its own state
-  const[good,setGood]=useState(0);
-  const[neutral,setNeutral]=useState(0);
-  const[bad,setBad]=useState(0);
+const Statistics = ({ good, neutral, bad, total, average, positivePercentage }) => {
+  return (
+    <div>
+      <p>good {good}</p>
+      <p>neutral {neutral}</p>
+      <p>bad {bad}</p>
+      <p>all {total}</p>
+      <p>average {average}</p>
+      <p>positive {positivePercentage} %</p>
+    </div>
+  );
+};
 
-  const total=good+neutral+bad;
-  const average=total?(good-bad)/total:0;
+const App = () => {
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+
+  const total = good + neutral + bad;
+  const average = total ? (good - bad) / total : 0;
   const positivePercentage = total ? (good / total) * 100 : 0;
 
   return (
     <div>
-      <h1>Give Feedback</h1>
-      <button onClick={()=>setGood(good+1)}>Good</button>
-      <button onClick={()=>setNeutral(neutral+1)}>Neutral</button>
-      <button onClick={()=>setBad(bad+1)}>Bad</button>
-      <h2>Statics</h2>
-      <p>Good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>Bad {bad}</p>
-      <p>All {total}</p>
-      <p>Average {average}</p>
-      <p>Bad {bad}</p>
+      <h1>give feedback</h1>
+      <button onClick={() => setGood(good + 1)}>good</button>
+      <button onClick={() => setNeutral(neutral + 1)}>neutral</button>
+      <button onClick={() => setBad(bad + 1)}>bad</button>
+
+      <h2>statistics</h2>
+      <Statistics
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        total={total}
+        average={average}
+        positivePercentage={positivePercentage}
+      />
     </div>
   );
 };
 
 export default App;
+
 
 
 
