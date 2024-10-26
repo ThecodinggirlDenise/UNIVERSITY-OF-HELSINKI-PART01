@@ -1,61 +1,26 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-import React from 'react';
-
-const Header = (props) => {
-  return <h1>{props.course}</h1>;
-};
-
-const Part = (props) => {
-  return (
-    <p>
-      {props.part.name} {props.part.exercises}
-    </p>
-  );
-};
-
-const Content = (props) => {
-  return (
-    <div>
-      <Part part={props.part1} />
-      <Part part={props.part2} />
-      <Part part={props.part3} />
-    </div>
-  );
-};
-
-const Total = (props) => {
-  return (
-    <p>
-      Number of exercises {props.part1.exercises + props.part2.exercises + props.part3.exercises}
-    </p>
-  );
-};
+import { useState } from 'react';
 
 const App = () => {
-  const course = 'Half Stack application development';
-  const part1 = {
-    name: 'Fundamentals of React',
-    exercises: 10,
-  };
-  const part2 = {
-    name: 'Using props to pass data',
-    exercises: 7,
-  };
-  const part3 = {
-    name: 'State of a component',
-    exercises: 14,
-  };
-
+  // Save clicks of each button to its own state
+  const[good,setGood]=useState(0);
+  const[neutral,setNeutral]=useState(0);
+  const[bad,setBad]=useState(0);
   return (
     <div>
-      <Header course={course} />
-      <Content part1={part1} part2={part2} part3={part3} />
-      <Total part1={part1} part2={part2} part3={part3} />
+      <h1>Give Feedback</h1>
+      <button onClick={()=>setGood(good+1)}>Good</button>
+      <button onClick={()=>setNeutral(neutral+1)}>Neutral</button>
+      <button onClick={()=>setBad(bad+1)}>Bad</button>
+      <h2>Statics</h2>
+      <p>Good {good}</p>
+      <p>neutral {neutral}</p>
+      <p>Bad {bad}</p>
     </div>
   );
 };
 
 export default App;
+
 
 
